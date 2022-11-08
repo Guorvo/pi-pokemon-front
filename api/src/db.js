@@ -33,8 +33,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Pokemon, Types } = sequelize.models;
 
 // Aca vendrian las relaciones
-Types.belongsToMany(Pokemon, {through: 'Pokemon-Types'});
-Pokemon.belongsToMany(Types, {through: 'Pokemon-Types'});
+var PokemonTypes = sequelize.define('pokemon_types', {}, {timestamps: false})
+Types.belongsToMany(Pokemon, {through: PokemonTypes});
+Pokemon.belongsToMany(Types, {through: PokemonTypes});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

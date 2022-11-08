@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+
 router.get('/', (req,res) => {
-    res.send('Anda!')
+  res.status(201).send('Anda!')
 })
 
 module.exports = router

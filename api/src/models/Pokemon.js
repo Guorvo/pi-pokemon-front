@@ -39,10 +39,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       validate: {min: 0}
     },
-    dbContent: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    }
+    image: {
+      type: DataTypes.STRING(1000),
+      isUrl: true,
+    },
   },
     { timestamps: false });
 };

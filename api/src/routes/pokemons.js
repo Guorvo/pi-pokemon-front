@@ -40,8 +40,7 @@ router.post('/', async(req,res) => {
       name, hp, attack, defense, speed, height, weight, image, types
     } = req.body
     let imageUrl = image ? image : defaultPokeball
-    await createPkmn(name, hp, attack, defense, speed, height, weight, imageUrl , types)
-    res.status(201).send('Se creo el pokemon')
+    await createPkmn(name, hp, attack, defense, speed, height, weight, imageUrl , types) ? res.status(201).send('Se creo el pokemon') : res.status(404).send('Fallo al crear al pokemon')
   } catch (error) {
     res.status(404).send(`POST /POKEMON Error: ${error}`)
   }

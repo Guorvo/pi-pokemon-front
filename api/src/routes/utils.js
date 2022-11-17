@@ -30,16 +30,29 @@ async function gottaCatchAPI() {
 
 async function gottaCatchDB() {
   try {
-    const pokemonsDB = await Pokemon.findAll({
+    const pokemonsDB = (await Pokemon.findAll({
       include: {
         model: Type,
         attributes: ["name"],
         through: {
           attributes: [],
         },
-      }
-    });
-    return pokemonsDB
+      },
+    })).map(x => x.get({ plain: true}))
+    const formattedDB = pokemonsDB.map(pkmn => {
+      return {
+        id: pkmn['id'],
+        name: pkmn['name'],
+        hp: pkmn['hp'],
+        attack: pkmn['attack'],
+        defense: pkmn['defense'],
+        speed: pkmn['speed'],
+        height: pkmn['height'],
+        weight: pkmn['weight'],
+        image: pkmn['image'],
+        types: pkmn['types'].map((tValue) => tValue['name'])}
+    })
+    return formattedDB
   } catch (error) {
     console.log('Error en gottaCatchDB:', error)
   }
@@ -73,12 +86,34 @@ async function gottaFindPkmn(id) {
   }).catch(async function () {
     const regex = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
     if (regex.test(id)) {
-      const filterDB = await Pokemon.findByPk(id)
+      const filterDB = (await Pokemon.findOne({
+        where: {
+          id: id
+        },
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        }
+      })).get({ plain: true})
       if (filterDB !== null) {
-        return filterDB
+        return {
+          id: filterDB['id'],
+          name: filterDB['name'],
+          hp: filterDB['hp'],
+          attack: filterDB['attack'],
+          defense: filterDB['defense'],
+          speed: filterDB['speed'],
+          height: filterDB['height'],
+          weight: filterDB['weight'],
+          image: filterDB['image'],
+          types: filterDB['types'].map((tValue) => tValue['name'])
+        }
       }
     }
-    throw new Error(" gottaCatchEmAll: Ningun pokemon con ese id.");
+    throw new Error(" gottaFindPkmn: Ningun pokemon con ese id.");
   })
 }
 
@@ -101,7 +136,7 @@ async function createPkmn(name, hp, attack, defense, speed, height, weight, imag
       })
 
       types.map(async x => await newPkmn.addType(x))
-
+      return true
     } else {
       throw new Error('Faltaron datos necesarios.')
     }

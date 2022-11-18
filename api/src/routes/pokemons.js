@@ -27,7 +27,7 @@ router.get('/:id', async(req,res) => {
       const foundPokemon = await gottaFindPkmn(id)
       res.status(200).json(foundPokemon)
     } else {
-      res.status(404).send("No se encontró el id por params.");
+      res.status(404).send("Could not find id from params.");
     }
   } catch (error) {
     res.status(404).send(`GET /POKEMON/:ID ${error}`)

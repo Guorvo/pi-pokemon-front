@@ -19,8 +19,6 @@ function App() {
         <NavBar />
       </Route>
 
-
-
       <Route
         exact
         path="/about"
@@ -30,9 +28,14 @@ function App() {
         exact
         path="/pokemon"
         render={() => <PokemonList />} />
+
       <Switch>
-        <Route exact path="/pokemon/create" component={CreatePokemon} />
+        <Route 
+          exact 
+          path="/pokemon/create" 
+          component={CreatePokemon} />
         <Route
+          exact
           path="/pokemon/:id"
           component={PokemonDetail}
         />

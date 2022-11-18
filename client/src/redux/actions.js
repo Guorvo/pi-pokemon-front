@@ -1,3 +1,4 @@
+
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
 export const CREATE_POKEMON = "CREATE_POKEMON"
@@ -19,5 +20,5 @@ export const getPokemonDetail = (id) => {
 }
 
 export const createPokemon = (user) => {
-  return
+  return function(dispatch){}
 }

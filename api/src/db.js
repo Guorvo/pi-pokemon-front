@@ -14,29 +14,29 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
+// We read all the files from the Models folder, require them and add to the modelDefiners array
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
+// We inject the connection (sequelize) to all models
 modelDefiners.forEach(model => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
+// We capitalize the names of the models ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+// In sequelize.models are all imported models as properties
+// To relate them we make a destructuring
 const { Pokemon, Type } = sequelize.models;
 
-// Aca vendrian las relaciones
+// Here comes the relationships
 var PokemonTypes = sequelize.define('Pokemon_Types', {}, {timestamps: false})
 Type.belongsToMany(Pokemon, {through: PokemonTypes});
 Pokemon.belongsToMany(Type, {through: PokemonTypes});
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models, // to be able to import the models like this: const { Product, User } = require('./db.js');
+  conn: sequelize,     // to import the connection { conn } = require('./db.js');
 };

@@ -24,7 +24,7 @@ async function gottaCatchAPI() {
     ))
     return apiCalls
   } catch (error) {
-    console.log('Error en gottaCatchAPI:', error)
+    console.log('Error in gottaCatchAPI:', error)
   }
 }
 
@@ -54,7 +54,7 @@ async function gottaCatchDB() {
     })
     return formattedDB
   } catch (error) {
-    console.log('Error en gottaCatchDB:', error)
+    console.log('Error in gottaCatchDB:', error)
   }
 }
 
@@ -113,7 +113,7 @@ async function gottaFindPkmn(id) {
         }
       }
     }
-    throw new Error(" gottaFindPkmn: Ningun pokemon con ese id.");
+    throw new Error(" gottaFindPkmn: No pokemon with provided id.");
   })
 }
 
@@ -138,10 +138,10 @@ async function createPkmn(name, hp, attack, defense, speed, height, weight, imag
       types.map(async x => await newPkmn.addType(x))
       return true
     } else {
-      throw new Error('Faltaron datos necesarios.')
+      throw new Error('Missing necessary data.')
     }
   } catch (error) {
-    console.log('Error en createPkmn:', error)
+    console.log('Error in createPkmn:', error)
   }
 }
 
@@ -151,7 +151,7 @@ async function getTypes() {
     apiTypes.map(async type => await Type.findOrCreate({ where: { name: type['name'] } }))
     return apiTypes
   } catch (error) {
-    console.log('Error en getTypes:', error)
+    console.log('Error in getTypes:', error)
   }
 }
 

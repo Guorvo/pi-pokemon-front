@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+// Exporting a function that defines the model
+// Later we inject the connection to sequelize
 module.exports = (sequelize) => {
-  // defino el modelo
+  // We define the model
   sequelize.define('pokemon', {
     id: {
       type: DataTypes.UUID,
@@ -46,13 +46,3 @@ module.exports = (sequelize) => {
   },
     { timestamps: false });
 };
-
-// [ ] Pokemon con las siguientes propiedades:
-// ID (Número de Pokemon) * : No puede ser un ID de un pokemon ya existente en la API pokeapi
-// Nombre *
-// Vida
-// Ataque
-// Defensa
-// Velocidad
-// Altura
-// Peso

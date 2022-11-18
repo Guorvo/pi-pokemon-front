@@ -9,7 +9,8 @@ const CreatePokemon = () => {
     defense: 0,
     speed: 0,
     height: 0,
-    weight: 0
+    weight: 0,
+    type: []
   })
 
   const changeHandler = (event) => {
@@ -102,6 +103,10 @@ const CreatePokemon = () => {
             onChange={changeHandler} />
         </div>
 
+        <>
+          
+        </>
+
         <button type="submit">SUBMIT</button>
       </form>
     </>
@@ -110,14 +115,3 @@ const CreatePokemon = () => {
 
 
 export default CreatePokemon
-// "hp": 45,
-//     "attack": 49,
-//     "defense": 49,
-//     "speed": 45,
-//     "height": 7,
-//     "weight": 69,
-//     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-//     "types": [
-//       "grass",
-//       "poison"
-//     ]

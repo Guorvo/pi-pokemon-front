@@ -5,14 +5,14 @@ const CreatePokemon = () => {
     name: "",
     image: "",
     hp: 0,
-    attack:0,
-    defense:0,
-    speed:0,
-    height:0,
-    weight:0
+    attack: 0,
+    defense: 0,
+    speed: 0,
+    height: 0,
+    weight: 0
   })
 
-  const changeHandler = (event)=>{
+  const changeHandler = (event) => {
     const property = event.target.name
     const value = event.target.value
 
@@ -22,36 +22,85 @@ const CreatePokemon = () => {
     })
   }
 
-  const submitHandler = (event)=>{
+  const submitHandler = (event) => {
     event.preventDefault()
   }
 
-  return(
+  return (
     <>
       <form onSubmit={submitHandler}>
-        <label htmlFor="name">NAME:</label>
-        <input type="text" name="name" value={input.name} onChange={changeHandler}/>
 
-        <label htmlFor="hp">IMAGE:</label>
-        <input type="url" name="image" value={input.image} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="name">NAME:</label>
+          <input 
+            type="text" 
+            name="name" 
+            value={input.name} 
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="hp">HP:</label>
-        <input type="number" name="hp" value={input.hp} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="hp">IMAGE:</label>
+          <input 
+            type="url" 
+            name="image" 
+            value={input.image} 
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="attack">ATTACK:</label>
-        <input type="number" name="attack" value={input.attack} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="hp">HP:</label>
+          <input 
+            type="number" 
+            name="hp" 
+            value={input.hp}
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="defense">DEFENSE:</label>
-        <input type="number" name="defense" value={input.defense} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="attack">ATTACK:</label>
+          <input 
+            type="number" 
+            name="attack" 
+            value={input.attack} 
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="speed">SPEED:</label>
-        <input type="number" name="speed" value={input.speed} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="defense">DEFENSE:</label>
+          <input 
+            type="number" 
+            name="defense" 
+            value={input.defense} 
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="height">HEIGHT:</label>
-        <input type="number" name="height" value={input.height} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="speed">SPEED:</label>
+          <input 
+            type="number" 
+            name="speed" 
+            value={input.speed} 
+            onChange={changeHandler} />
+        </div>
 
-        <label htmlFor="weight">WEIGHT:</label>
-        <input type="number" name="weight" value={input.weight} onChange={changeHandler}/>
+        <div>
+          <label htmlFor="height">HEIGHT:</label>
+          <input 
+            type="number" 
+            name="height" 
+            value={input.height} 
+            onChange={changeHandler} />
+        </div>
+
+        <div>
+          <label htmlFor="weight">WEIGHT:</label>
+          <input 
+            type="number" 
+            name="weight" 
+            value={input.weight} 
+            onChange={changeHandler} />
+        </div>
 
         <button type="submit">SUBMIT</button>
       </form>

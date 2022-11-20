@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom"
  
+
 const Pokemon = ({image,name,types,id})=>{
   return(
     <>

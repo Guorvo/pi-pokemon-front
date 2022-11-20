@@ -2,6 +2,7 @@
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
 export const CREATE_POKEMON = "CREATE_POKEMON"
+export const GET_TYPES = "GET_TYPES"
 
 export const getPokemons = () => {
   return function(dispatch){
@@ -20,5 +21,15 @@ export const getPokemonDetail = (id) => {
 }
 
 export const createPokemon = (user) => {
-  return function(dispatch){}
+  return function(dispatch){
+    fetch('http://localhost:3001/pokemons')
+  }
+}
+
+export const getTypes = () => {
+  return function(dispatch){
+    fetch(`http://localhost:3001/types`)
+    .then(res => res.json())
+    .then(data => dispatch({type: GET_TYPES, payload: data}))
+  }
 }

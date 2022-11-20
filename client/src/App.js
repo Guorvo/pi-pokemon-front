@@ -1,6 +1,5 @@
 import './styles/App.css';
 import NavBar from './components/NavBar';
-import About from './components/About';
 import PokemonList from './components/PokemonList';
 import PokemonDetail from './components/PokemonDetail';
 import CreatePokemon from './components/CreatePokemon';
@@ -18,11 +17,6 @@ function App() {
       <Route path="/pokemon">
         <NavBar />
       </Route>
-
-      <Route
-        exact
-        path="/about"
-        render={() => <About info="Esta es la info" />} />
 
       <Route
         exact

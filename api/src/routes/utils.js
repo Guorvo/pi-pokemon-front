@@ -147,9 +147,12 @@ async function createPkmn(name, hp, attack, defense, speed, height, weight, imag
 
 async function getTypes() {
   try {
-    const apiTypes = (await axios.get('https://pokeapi.co/api/v2/type'))['data']['results']
-    apiTypes.map(async type => await Type.findOrCreate({ where: { name: type['name'] } }))
-    return apiTypes
+    if (!await Type.count()) {
+      const apiTypes = (await axios.get('https://pokeapi.co/api/v2/type'))['data']['results']
+      await apiTypes.map(async type => await Type.findOrCreate({ where: { name: type['name'] }}))
+    }
+    const dbTypes = (await Type.findAll({raw: true}))
+    return dbTypes
   } catch (error) {
     console.log('Error in getTypes:', error)
   }

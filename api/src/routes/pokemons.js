@@ -9,13 +9,13 @@ router.get('/', async(req,res) => {
     const {name} = req.query
     const arrPkmn = await gottaCatchEmAll()
     if (name) {
-      const findPkmn = arrPkmn.filter(pkmn=> pkmn['name'] === name)
-      findPkmn.length ? res.status(200).json(findPkmn) : res.status(400).send('Pokemon not Found')
+      const findPkmn = await gottaFindPkmn(name)
+      res.status(200).json(findPkmn)
     } else {
       res.status(200).json(arrPkmn)
     }
   } catch (error) {
-    res.status(404).send('GET /POKEMON Error: ', error)
+    res.status(404).send(`Could not find pokemons.`)
   }
 })
 
@@ -40,7 +40,9 @@ router.post('/', async(req,res) => {
       name, hp, attack, defense, speed, height, weight, image, types
     } = req.body
     let imageUrl = image ? image : defaultPokeball
-    await createPkmn(name, hp, attack, defense, speed, height, weight, imageUrl , types) ? res.status(201).send('Se creo el pokemon') : res.status(404).send('Fallo al crear al pokemon')
+    await createPkmn(name, hp, attack, defense, speed, height, weight, imageUrl , types) 
+    ? res.status(201).send('The pokemon was created') 
+    : res.status(404).send('Error while creating the pokemon')
   } catch (error) {
     res.status(404).send(`POST /POKEMON Error: ${error}`)
   }

@@ -1,9 +1,9 @@
 import './styles/App.css';
-import NavBar from './components/NavBar';
-import PokemonList from './components/PokemonList';
-import PokemonDetail from './components/PokemonDetail';
-import CreatePokemon from './components/CreatePokemon';
-import Landing from './components/Landing';
+import NavBar from './components/PokemonBox/NavBar';
+import PokemonBox from './components/PokemonBox/PokemonBox';
+import PokemonDetail from './components/PokemonDetail/PokemonDetail';
+import CreatePokemon from './components/CreatePokemon/CreatePokemon';
+import Landing from './components/Landing/Landing';
 import { Route, Switch } from 'react-router-dom'
 
 
@@ -21,7 +21,7 @@ function App() {
       <Route
         exact
         path="/pokemon"
-        render={() => <PokemonList />} />
+        render={() => <PokemonBox />} />
 
       <Switch>
         <Route 

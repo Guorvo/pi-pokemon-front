@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux";
-import { getPokemonDetail } from "../redux/actions";
+import { getPokemonDetail } from "../../redux/actions";
 
 const PokemonDetail = (props) => {
   const {id} = props.match.params
   const dispatch = useDispatch()
 
+  const pokemonDetail = useSelector((state) => state.pokemonDetail)
+  
   useEffect(()=>{
     dispatch(getPokemonDetail(id)) // eslint-disable-next-line
   },[])
-
-  const pokemonDetail = useSelector((state) => state.pokemonDetail)
-
 
   return(
     <>

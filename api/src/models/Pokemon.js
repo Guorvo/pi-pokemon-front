@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(1000),
       isUrl: true,
     },
+    dbContent:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
   },
     { timestamps: false });
 };

@@ -1,4 +1,4 @@
-import './styles/App.css';
+import './styles/App.module.css';
 import NavBar from './components/PokemonBox/NavBar';
 import PokemonBox from './components/PokemonBox/PokemonBox';
 import PokemonDetail from './components/PokemonDetail/PokemonDetail';

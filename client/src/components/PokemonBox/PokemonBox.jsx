@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes } from "../../redux/actions";
 import PokemonPage from "./PokemonPage";
 import Pagination from "./Pagination"
-
+import styles from "../../styles/PokemonBox.module.css"
 
 
 // https://github.com/bradtraversy/simple_react_pagination
@@ -19,7 +19,7 @@ const PokemonBox = () => {
     sortFlow: "asc",
     processedPosts: []
   })
-  
+
   const pkmnPosts = useSelector((state) => state.pokemons)
   const pkmnTypes = useSelector((state) => state.types)
 
@@ -38,39 +38,39 @@ const PokemonBox = () => {
 
   const filtering = (sort, sortFlow, filter, filterType) => {
     let posts = [...pkmnPosts]
-      switch (filter) {
-        case "types":
-          posts = posts.filter(x => x.types.includes(filterType))
-          break
-        case "api":
-          posts = posts.filter(x => !x.dbContent)
-          break
-        case "db":
-          posts = posts.filter(x => x.dbContent)
-          break
-        default:
-          break
-      }
+    switch (filter) {
+      case "types":
+        posts = posts.filter(x => x.types.includes(filterType))
+        break
+      case "api":
+        posts = posts.filter(x => !x.dbContent)
+        break
+      case "db":
+        posts = posts.filter(x => x.dbContent)
+        break
+      default:
+        break
+    }
 
-      switch (sort) {
-        case "name":
-          // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
-          posts.sort((a, b) => a.name.localeCompare(b.name))
-          break
-        case "attack":
-          posts.sort((a, b) => a.attack - b.attack)
-          break
-        default:
-          break
-      }
+    switch (sort) {
+      case "name":
+        // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
+        posts.sort((a, b) => a.name.localeCompare(b.name))
+        break
+      case "attack":
+        posts.sort((a, b) => a.attack - b.attack)
+        break
+      default:
+        break
+    }
 
-      switch (sortFlow) {
-        case "des":
-          posts = posts.reverse()
-          break
-        default:
-          break
-      }
+    switch (sortFlow) {
+      case "des":
+        posts = posts.reverse()
+        break
+      default:
+        break
+    }
     return posts
   }
 
@@ -123,32 +123,46 @@ const PokemonBox = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
-    <>
-      <select name="sort" onChange={sortHandler}>
-        <option value="id">Sort by ID</option>
-        <option value="name">Sort by Name</option>
-        <option value="attack">Sort by Attack</option>
-      </select>
-
-      <select name="sortFlow" onChange={sortflowHandler}>
-        <option value="asc">Asc.</option>
-        <option value="des">Des.</option>
-      </select>
-
-      <select name="filter" onChange={filterHandler}>
-        <option value="default">No Filter</option>
-        <option value="types">Filter by Type</option>
-        <option value="api">Filter API Pokemons</option>
-        <option value="db">Filter DB Pokemons</option>
-      </select>
-
-      {filterOrder.filter === "types"
-        ? <select name="filterType" onChange={typefilterHandler}>
-          {pkmnTypes.map(t => {
-            return (<option value={t.name} key={`type-${t.id}`} >{t.name.charAt(0).toUpperCase() + t.name.slice(1)}</option>)
-          })}
+    <div className={styles.pokemonBox}>
+      <div className={styles.filters}>
+        <select 
+          name="sort" 
+          className={styles.box}
+          onChange={sortHandler}>
+          <option value="id">Sort by ID</option>
+          <option value="name">Sort by Name</option>
+          <option value="attack">Sort by Attack</option>
         </select>
-        : null}
+
+        <select 
+          name="sortFlow" 
+          className={styles.box}
+          onChange={sortflowHandler}>
+          <option value="asc">Asc.</option>
+          <option value="des">Des.</option>
+        </select>
+
+        <select 
+          name="filter" 
+          className={styles.box}
+          onChange={filterHandler}>
+          <option value="default">No Filter</option>
+          <option value="types">Filter by Type</option>
+          <option value="api">Filter API Pokemons</option>
+          <option value="db">Filter DB Pokemons</option>
+        </select>
+
+        {filterOrder.filter === "types"
+          ? <select 
+              name="filterType" 
+              className={styles.box}
+              onChange={typefilterHandler}>
+            {pkmnTypes.map(t => {
+              return (<option value={t.name} key={`type-${t.id}`} >{t.name.charAt(0).toUpperCase() + t.name.slice(1)}</option>)
+            })}
+          </select>
+          : null}
+      </div>
 
       <Pagination
         postsPerPage={postsPerPage}
@@ -157,8 +171,7 @@ const PokemonBox = () => {
       />
 
       <PokemonPage posts={currentPosts} loading={loading} />
-
-    </>
+    </div>
   )
 }
 

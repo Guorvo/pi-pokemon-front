@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from "../../styles/Pagination.module.css"
 
 // https://github.com/bradtraversy/simple_react_pagination
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
@@ -9,14 +10,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    <>
-      <div>
-        {pageNumbers.map(number => (
-          <button key={`page-${number}`} onClick={() => paginate(number)}>
-            {number}</button>
-        ))}
-      </div>
-    </>
+    <div className={styles.pages}>
+      {pageNumbers.map(number => (
+        <button key={`page-${number}`} className={styles.button} onClick={() => paginate(number)}>
+          {number}</button>
+      ))}
+    </div>
   );
 };
 

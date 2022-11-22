@@ -1,16 +1,15 @@
 import {Link} from "react-router-dom"
- 
+import styles from "../../styles/Pokemon.module.css"
 
 const Pokemon = ({image,name,types,id})=>{
   return(
-    <>
+    <div>
     <Link to={`/pokemon/${id}`}>
       <img src={image} alt={`${name}`} />
-      <h3>{name}</h3>
+      <h2 className={styles.name}>{name}</h2>
     </Link>
-    <p>{types}</p>
-    <hr />
-    </>
+    {types.map(t => (<span key={id + t} className={styles.types}>{t}</span>))}
+    </div>
   )
 }
 

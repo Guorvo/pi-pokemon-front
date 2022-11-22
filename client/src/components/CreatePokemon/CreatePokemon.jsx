@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { createPokemon, getPokemons, getTypes } from "../../redux/actions";
-
+import styles from "../../styles/CreatePokemon.module.css"
 
 // https://stackoverflow.com/questions/6454198/check-if-a-value-is-within-a-range-of-numbers
 function between(x, min, max) {
@@ -102,10 +102,10 @@ const CreatePokemon = () => {
   }
 
   return (
-    <>
+    <div className={styles.main}>
       {
         Object.keys(input.errors).every((err) => err !== "")
-          ? Object.keys(input.errors).map(err => <p key={`error-${err}`}>{input.errors[err]}</p>)
+          ? <div className={styles.errors} >{Object.keys(input.errors).map(err => <p key={`error-${err}`}>{input.errors[err]}</p>)}</div>
           : null
       }
       <form onSubmit={submitHandler}>
@@ -199,7 +199,7 @@ const CreatePokemon = () => {
           disabled={Object.keys(input.errors).every((err) => input.errors[err] !== "") || Object.keys(input.errors).length !== 9}
           type="submit">SUBMIT</button>
       </form>
-    </>
+    </div>
   )
 }
 

@@ -1,4 +1,5 @@
 import Pokemon from "./Pokemon";
+import styles from "../../styles/PokemonPage.module.css"
 
 // https://github.com/bradtraversy/simple_react_pagination
 const PokemonPage = ({ posts, loading }) => {
@@ -10,7 +11,7 @@ const PokemonPage = ({ posts, loading }) => {
   }
 
   return (
-    <>
+    <div className={styles.boxpkmn}>
       {
         posts.map(
           (pkmn) => <Pokemon
@@ -21,7 +22,7 @@ const PokemonPage = ({ posts, loading }) => {
             id={pkmn.id} />
         )
       }
-    </>
+    </div>
   )
 }
 

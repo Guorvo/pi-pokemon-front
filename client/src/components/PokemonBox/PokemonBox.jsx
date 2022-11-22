@@ -96,7 +96,7 @@ const PokemonBox = () => {
 
   const filterHandler = (event) => {
     const value = event.target.value
-
+    setCurrentPage(1)
     setfilterOrder({
       ...filterOrder,
       filter: value,
@@ -106,7 +106,7 @@ const PokemonBox = () => {
 
   const typefilterHandler = (event) => {
     const value = event.target.value
-
+    setCurrentPage(1)
     setfilterOrder({
       ...filterOrder,
       filterType: value,

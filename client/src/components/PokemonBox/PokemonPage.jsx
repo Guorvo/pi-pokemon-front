@@ -7,7 +7,7 @@ const PokemonPage = ({ posts, loading }) => {
   if (!loading) {
     return <h2>Loading...</h2>;
   } else if (!posts.length) {
-    return <h2>No pokemons!</h2>
+    return <h2 className={styles.noPkmn}>No pokemons!</h2>
   }
 
   return (

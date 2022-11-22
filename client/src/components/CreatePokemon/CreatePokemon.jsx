@@ -103,6 +103,7 @@ const CreatePokemon = () => {
 
   return (
     <div className={styles.main}>
+      <h2>Create A Pokemon!</h2>
       {
         Object.keys(input.errors).every((err) => err !== "")
           ? <div className={styles.errors} >{Object.keys(input.errors).map(err => <p key={`error-${err}`}>{input.errors[err]}</p>)}</div>
@@ -141,58 +142,60 @@ const CreatePokemon = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="hp">HP:</label>
-          <input
-            type="number"
-            name="hp"
-            value={input.hp}
-            onChange={changeHandler} />
-        </div>
+        <div className={styles.numberInputs}>
+          <div>
+            <label htmlFor="hp">HP:</label>
+            <input
+              type="number"
+              name="hp"
+              value={input.hp}
+              onChange={changeHandler} />
+          </div>
 
-        <div>
-          <label htmlFor="attack">ATTACK:</label>
-          <input
-            type="number"
-            name="attack"
-            value={input.attack}
-            onChange={changeHandler} />
-        </div>
+          <div>
+            <label htmlFor="attack">ATTACK:</label>
+            <input
+              type="number"
+              name="attack"
+              value={input.attack}
+              onChange={changeHandler} />
+          </div>
 
-        <div>
-          <label htmlFor="defense">DEFENSE:</label>
-          <input
-            type="number"
-            name="defense"
-            value={input.defense}
-            onChange={changeHandler} />
-        </div>
+          <div>
+            <label htmlFor="defense">DEFENSE:</label>
+            <input
+              type="number"
+              name="defense"
+              value={input.defense}
+              onChange={changeHandler} />
+          </div>
 
-        <div>
-          <label htmlFor="speed">SPEED:</label>
-          <input
-            type="number"
-            name="speed"
-            value={input.speed}
-            onChange={changeHandler} />
-        </div>
+          <div>
+            <label htmlFor="speed">SPEED:</label>
+            <input
+              type="number"
+              name="speed"
+              value={input.speed}
+              onChange={changeHandler} />
+          </div>
 
-        <div>
-          <label htmlFor="height">HEIGHT:</label>
-          <input
-            type="number"
-            name="height"
-            value={input.height}
-            onChange={changeHandler} />
-        </div>
+          <div>
+            <label htmlFor="height">HEIGHT:</label>
+            <input
+              type="number"
+              name="height"
+              value={input.height}
+              onChange={changeHandler} />
+          </div>
 
-        <div>
-          <label htmlFor="weight">WEIGHT:</label>
-          <input
-            type="number"
-            name="weight"
-            value={input.weight}
-            onChange={changeHandler} />
+          <div>
+            <label htmlFor="weight">WEIGHT:</label>
+            <input
+              type="number"
+              name="weight"
+              value={input.weight}
+              onChange={changeHandler} />
+          </div>
         </div>
 
         <button

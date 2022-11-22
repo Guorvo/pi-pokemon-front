@@ -6,8 +6,11 @@
   max-width: 600px;
 }
 
-.main input,
-select {
+.main h2 {
+  text-align: center;
+}
+
+.main input {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -16,6 +19,18 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.numberInputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.numberInputs input {
+  display: flex;
+}
+
 
 .main button {
   width: 100%;
@@ -44,7 +59,7 @@ select {
 }
 
 .errors p {
-  margin: 0px;
+  margin: 10px;
   text-align: center;
   font-weight: 600;
   color: white;

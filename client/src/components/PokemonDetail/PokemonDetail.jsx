@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonDetail } from "../../redux/actions";
 import styles from "../../styles/PokemonDetail.module.css"
+import color from "../../styles/Color.module.css"
 
 const PokemonDetail = (props) => {
   const { id } = props.match.params
@@ -17,13 +18,13 @@ const PokemonDetail = (props) => {
     pokemonDetail.name ?
       <div className={styles.card}>
         <img src={pokemonDetail.image} alt={pokemonDetail.name} />
-        <div>
+        <div className={styles.names}>
           <h2>{pokemonDetail.name.charAt(0).toUpperCase() + pokemonDetail.name.slice(1)}</h2>
           <h5>#{pokemonDetail.id}</h5>
         </div>
         <div className={styles.types}>
           {pokemonDetail.types !== undefined
-            ? pokemonDetail.types.map(type => <span key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</span>)
+            ? pokemonDetail.types.map(type => <div key={type} className={`${color["pkm-type"]} ${color[type]}`}><span>{type.charAt(0).toUpperCase() + type.slice(1)}</span></div>)
             : <p>Loading Types!</p>}
         </div>
 

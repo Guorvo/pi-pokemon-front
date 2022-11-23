@@ -1,6 +1,13 @@
 const axios = require('axios')
 const { Pokemon, Type } = require('../db.js')
 
+// okay, i might have done a mess so i'll try to be as concise as possible, 
+//  some lines of code should be a separate function but im out of time and i really cant think no more
+// im truly sorry
+
+// I get a call from the API (pretty cool!, should check it later) 
+// this call by default returns the 20 first pokemon, so i add another call using the next value 
+// so i get the 40 requested values the readme required, then we return the specifed data
 async function gottaCatchAPI() {
   try {
     const firstCall = (await axios.get(`https://pokeapi.co/api/v2/pokemon`))['data']
@@ -28,6 +35,8 @@ async function gottaCatchAPI() {
   }
 }
 
+// I try to find all the pokemons from my database, including their associations with its typing
+// then we return the specifed data
 async function gottaCatchDB() {
   try {
     const pokemonsDB = (await Pokemon.findAll({
@@ -59,6 +68,7 @@ async function gottaCatchDB() {
   }
 }
 
+// We use the previous functions to get the API/DB calls and add them together in an array, then we return it
 async function gottaCatchEmAll() {
   try {
     const pkmnAPI = await gottaCatchAPI()
@@ -70,6 +80,11 @@ async function gottaCatchEmAll() {
   }
 }
 
+// I use the API pokemon finding call to find a pokemon, either by its name or id, so pretty straight foward
+// then if the call returns an error we try to find it by our database, testing the UUID value
+// if it's an UUID we request an id with the same value, if it's not we try the request from name
+// I know the return data filtering is on there twice, i had some problems trying to save the call in a variable
+// and many errors popped up that i couldnt understand so i winged it.
 async function gottaFindPkmn(value) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${value}`).then(pokemon => {
     return {
@@ -145,7 +160,11 @@ async function gottaFindPkmn(value) {
   })
 }
 
-async function createPkmn(name, hp, attack, defense, speed, height, weight, image, types) {
+// First we check if types has been already called (it's needed), and we check if names and types are present
+// Then we .create a new Pokemon, add its associations and return true
+async function createPkmn(
+  name, hp = 1, attack = 1, defense = 1, speed = 1, height = 1, weight = 1, image, types
+  ) {
   try {
     if (!await Type.count()) {
       await getTypes()
@@ -173,6 +192,9 @@ async function createPkmn(name, hp, attack, defense, speed, height, weight, imag
   }
 }
 
+// We check if the Types table has already been filled, if not we call the API for a batch of types
+// then we fill the said table with the values we called from the api, the "if" ends
+// after that we get all the db values and return it
 async function getTypes() {
   try {
     if (!await Type.count()) {
@@ -194,3 +216,5 @@ module.exports = {
   createPkmn,
   getTypes
 }
+
+// Im sorry you had to read that :( -G

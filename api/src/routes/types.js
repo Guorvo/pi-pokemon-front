@@ -2,6 +2,7 @@ const express = require('express')
 const { getTypes } = require('./utils')
 const router = express.Router()
 
+// We run the getTypes function and await the returning table
 router.get('/', async (req,res) => {
   try {
     const types = await getTypes()

@@ -4,14 +4,15 @@ const {} = require ('../db.js')
 const { gottaCatchEmAll, gottaFindPkmn, createPkmn } = require('./utils')
 const defaultPokeball = 'https://images.wikidexcdn.net/mwuploads/wikidex/0/02/latest/20090125150654/Pok%C3%A9_Ball_%28Ilustraci%C3%B3n%29.png'
 
+// I get the pokemons from the gottaCatchEmAll function and return it, if name is on query we return a search by number
 router.get('/', async(req,res) => {
   try {
     const {name} = req.query
-    const arrPkmn = await gottaCatchEmAll()
     if (name) {
       const findPkmn = await gottaFindPkmn(name)
       res.status(200).json(findPkmn)
     } else {
+      const arrPkmn = await gottaCatchEmAll()
       res.status(200).json(arrPkmn)
     }
   } catch (error) {
@@ -19,6 +20,7 @@ router.get('/', async(req,res) => {
   }
 })
 
+// I get the requested id by parameters and check if its available, then we run the gottaFindPkmn function and return the value
 router.get('/:id', async(req,res) => {
   try {
     const {id} = req.params
@@ -34,6 +36,7 @@ router.get('/:id', async(req,res) => {
   }
 })
 
+// I get the parameters already formatted from json and put them on the createPkmn function, then wait for an error or a success
 router.post('/', async(req,res) => {
   try {
     const {

@@ -67,7 +67,7 @@ const CreatePokemon = () => {
   const validate = (property, value, errors) => {
     switch (property) {
       case "name":
-        errors[property] = value.length === 0 || pokemonsFromDb.includes(value) ? "Name is required, and unique" : ""
+        errors[property] = value.length === 0 || !/[a-zA-Z]/gi.test(value) || pokemonsFromDb.includes(value) ? "Name must be only letters and is required, must be unique" : ""
         break
       case "image":
         errors[property] = value !== "" && !validateUrl(value) ? "Must be blank or a valid url" : ""
@@ -106,7 +106,7 @@ const CreatePokemon = () => {
       <h2>Create A Pokemon!</h2>
       {
         Object.keys(input.errors).every((err) => err !== "")
-          ? <div className={styles.errors} >{Object.keys(input.errors).map(err => <p key={`error-${err}`}>{input.errors[err]}</p>)}</div>
+          ? <div className={styles.errors} >{Object.keys(input.errors).filter((err) => err !== "").map(err => <p key={`error-${err}`}>{input.errors[err]}</p>)}</div>
           : null
       }
       <form onSubmit={submitHandler}>
@@ -199,7 +199,7 @@ const CreatePokemon = () => {
         </div>
 
         <button
-          disabled={Object.keys(input.errors).every((err) => input.errors[err] !== "") || Object.keys(input.errors).length !== 9}
+          disabled={!(Object.keys(input.errors).every((err) => input.errors[err] === "") && Object.keys(input.errors).length === 9)}
           type="submit">SUBMIT</button>
       </form>
     </div>

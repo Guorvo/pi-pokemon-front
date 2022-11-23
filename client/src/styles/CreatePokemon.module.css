@@ -53,14 +53,14 @@
   flex-direction: column;
   justify-content: center;
   margin-bottom: 20px;
-  border: rgb(190, 92, 92);
-  background-color: rgba(200, 0, 0, 0.7);
   border-radius: 5px 0 5px;
 }
 
 .errors p {
-  margin: 10px;
+  margin: 0px;
   text-align: center;
   font-weight: 600;
   color: white;
+  border: rgb(190, 92, 92);
+  background-color: rgba(200, 0, 0, 0.7);
 }

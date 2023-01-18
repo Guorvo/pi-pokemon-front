@@ -69,7 +69,7 @@ Adicionalmente será necesario que creen desde psql una base de datos llamada `p
 
 El contenido de `client` fue creado usando: Create React App.
 
-## Enunciado
+<!-- ## Enunciado
 
 La idea general es crear una aplicación en la cual se puedan ver los distintos Pokemon utilizando la api externa [pokeapi](https://pokeapi.co/) y a partir de ella poder, entre otras cosas:
 
@@ -184,4 +184,4 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 
 - [ ] Al menos tener un componente del frontend con sus tests respectivos
 - [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos -->

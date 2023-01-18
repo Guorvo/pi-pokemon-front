@@ -26,8 +26,8 @@
 
 body {
   background-image: url(../images/bg.png);
-  background-repeat: space;
-  background-size: 1400px;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position-x: center;
   background-attachment: fixed;
 }
